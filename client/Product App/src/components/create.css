@@ -1,0 +1,44 @@
+#form-container{
+    border: 1px solid #E2E8F0;
+    background-color: white;
+    color:#1E293B;
+    width:40vw;
+    height:40vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+    padding: 2rem;
+    border-radius: 15px;
+
+}
+input{
+    border-color: #CBD5E1;
+}
+h1{
+    color:#1E293B;
+}
+
+
+#create-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2.5rem;
+}
+
+.product{
+    padding:1rem;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#upload-btn{
+    padding:0.8rem;
+    border-radius: 5px;
+    width:10rem;
+    background-color: #115E59;
+    color:white;
+}
+

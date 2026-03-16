@@ -1,0 +1,42 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: 'Inter', sans-serif; 
+    background-color: #fcfcfc;
+}
+#hero{
+    object-fit:cover;
+    justify-content: flex-start;
+    width:10%;
+    height:90%;
+    
+}
+
+.container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10%;
+    
+
+    background: #D1FAE5; 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid black;
+}
+
+.link {
+    color:#1E293B;
+}
+
