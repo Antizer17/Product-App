@@ -1,15 +1,25 @@
 import Product  from '../models/Products.js'
 import mongoose from 'mongoose'
+import passport from '../passport.js'
 
 
-export async function getAllProducts(req,res){
-    try{
-        const allProducts = await Product.find({})
-        res.status(200).json({success:true,data:allProducts})
-    }catch(error){
-        res.status(500).json({success:false, message:'Server Error'})
+
+export async function getAllProducts(req, res) {
+    try {
+        console.log("Is user authenticated?", req.isAuthenticated());
+        
+        if (req.isAuthenticated()) {
+            const allProducts = await Product.find({});
+            // Add 'return' to prevent code from continuing
+            return res.status(200).json({ success: true, data: allProducts });
+        } else {
+            // IF YOU DON'T HAVE THIS, THE FRONTEND WILL HANG
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
+        }
+    } catch (error) {
+        console.error("Error in getAllProducts:", error);
+        return res.status(500).json({ success: false, message: 'Server Error' });
     }
-
 }
 
 

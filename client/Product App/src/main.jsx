@@ -5,13 +5,17 @@ import './index.css'
 import Navbar from './App.jsx'
 import Homepage from './components/home.jsx'
 import CreatePage from './components/create.jsx'
+import Login from './components/loginPage.jsx'
+import Register from './components/RegisterPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Navbar/>
     <Routes>
       <Route path='/'element={<Homepage />}/>
-      <Route path='/create'element={<CreatePage />}></Route>
+      <Route path='/create'element={<CreatePage />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register/>} />
     </Routes>
   </BrowserRouter>
 

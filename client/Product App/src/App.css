@@ -9,6 +9,7 @@
 body {
     font-family: 'Inter', sans-serif; 
     background-color: #fcfcfc;
+    overflow: hidden;
 }
 #hero{
     object-fit:cover;

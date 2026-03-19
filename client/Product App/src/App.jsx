@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { Link } from 'react-router-dom'
 import logo from "../src/assets/hero.png"
+import LoginStatus from './components/loginStatus'
 
 
 function Navbar() {
@@ -12,6 +13,7 @@ function Navbar() {
       <img id='hero' src={logo} alt='Hero.png'/>
       <Link className='link' to="/">Home</Link>
       <Link className='link' to={"/create"}>Create Page</Link>
+      <LoginStatus />
     </nav>
   )
     
