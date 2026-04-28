@@ -121,7 +121,7 @@ app.get('/api/logout', (req, res, next) => {
             
             // Clear the cookie in the browser
             res.clearCookie('connect.sid'); 
-            res.json({ message: "Logged out successfully" });
+            res.json({success:true, message: "Logged out successfully" });
         });
     });
 });
