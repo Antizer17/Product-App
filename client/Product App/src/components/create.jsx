@@ -7,7 +7,21 @@ import { Link, useNavigate } from "react-router-dom";
 function CreatePage(){
     const [productObj,setProductObj] = useState({name:'', price:'', image:''})
     const [response,setResponse] = useState('')
+    const [redirect,setRedirect] = useState(true)
     const navigate = useNavigate()
+    useEffect(()=>{
+      const checkAuth = async ()=>{
+        const res = await fetch('http://localhost:5000/api/login-status')
+        const data = await res.json()
+        if(data.success){
+            setRedirect(false)
+        }else{
+           return navigate('/login')
+        }
+       }
+       checkAuth()
+    },[])
+
     const handleUpload= async ()=>{
         if(!productObj.name || !productObj.price || !productObj.image){
             alert('All the information must be provided!')
@@ -36,7 +50,8 @@ function CreatePage(){
             
 
         }
-    return(
+        if(!redirect){
+            return(
         <div id='create-container'>
             <h1>Create a product</h1>
             <form id="form-container">
@@ -51,6 +66,11 @@ function CreatePage(){
             <div>{response}</div>
         </div>
     )
+        }else{
+            navigate('/login')
+        }
+
+    
 }
 
 export default CreatePage;

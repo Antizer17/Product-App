@@ -1,7 +1,25 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const MiniLoginStatus = () => {
+    const navigate = useNavigate()
     const [status, setStatus] = useState("loading");
+    const [recheck,setRecheck] = useState(false)
+    const [username, setUsername] = useState('')
+    const handleClick = async ()=>{
+        try{
+            const res = await fetch('http://localhost:5000/api/logout')
+            const data = await res.json()
+            if(data.success){
+                setRecheck(true)
+                navigate('/login')
+            }
+    
+        }catch(error){
+            console.error(error)
+        }
+    
+    }
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -11,17 +29,17 @@ const MiniLoginStatus = () => {
                 });
                 const data = await res.json();
                 setStatus(data.success ? true : false);
+                setUsername(data.success ? data.username : 'Pasa');
             } catch (error) {
                 setStatus(false);
             }
         };
 
         checkAuth();
-        const interval = setInterval(checkAuth, 10000);
-        return () => clearInterval(interval);
-    }, []);
+       
+    }, [recheck]);
 
-    // Styles for the mini navbar pill
+
     const pillStyle = {
         display: 'inline-flex',
         alignItems: 'center',
@@ -50,10 +68,19 @@ const MiniLoginStatus = () => {
     }
 
     return (
+    <div className="login-container" style={{display:"flex",
+        gap:"2rem",
+    
+    }}>
         <div style={pillStyle}>
             <span style={dotStyle}></span>
-            {status ? "Online" : "Offline"}
+            {status ? username : "Logged Out"}
+            
         </div>
+        <div>{status ? <Link onClick={handleClick} to={'/login'}>Logout</Link> : <Link to={'/login'}>Sign In</Link>}</div>
+
+    </div>
+        
     );
 };
 

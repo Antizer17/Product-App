@@ -127,7 +127,9 @@ app.get('/api/logout', (req, res, next) => {
 });
 app.get('/api/login-status',(req,res,next)=>{
     if(req.isAuthenticated()){
-        res.json({success:true,message:'Authenticated'})
+        res.json({success:true,message:'Authenticated',
+            username:req.user.username
+        })
     }else{
         res.json({success:false,message:'Not Authenticated'})
     }

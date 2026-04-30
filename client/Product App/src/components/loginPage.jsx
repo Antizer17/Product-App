@@ -49,10 +49,16 @@ const Login = () => {
         }
     };
 
-    // UI Styles (Keeping your existing aesthetic)
+
     const containerStyle = {
-        maxWidth: '350px',
-        margin: '80px auto',
+        minWidth: '500px',
+        minHeight: '300px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: '#D1FAE5',
+        marginLeft: 'auto',
+        marginRight: 'auto',
         padding: '20px',
         textAlign: 'center',
         fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
@@ -75,7 +81,7 @@ const Login = () => {
         width: '100%',
         padding: '12px',
         cursor: isLoading ? 'not-allowed' : 'pointer',
-        backgroundColor: isLoading ? '#ccc' : '#007bff',
+        backgroundColor: isLoading ? '#ccc' : '#374151',
         color: 'white',
         border: 'none',
         borderRadius: '4px',
@@ -85,7 +91,9 @@ const Login = () => {
     };
 
     return (
+    <div style={{width: '100vw', height:'100vh', backgroundColor:'#F9FAFB', display:'flex', alignItems:'center'}}>
         <div style={containerStyle}>
+            <div>            
             <h2 style={{ color: '#333', marginBottom: '20px' }}>Sign In</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -125,8 +133,9 @@ const Login = () => {
                 }}>
                     {message}
                 </p>
-            )}
+            )}</div>
         </div>
+    </div> 
     );
 };
 
