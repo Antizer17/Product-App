@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -121,6 +122,9 @@ const Login = () => {
                 <button type="submit" disabled={isLoading} style={buttonStyle}>
                     {isLoading ? 'Authenticating...' : 'Login'}
                 </button>
+                <Link to="/register" style={{ marginTop: '10px', color: '#374151', textDecoration: 'underline', fontSize: '14px' }}>
+                    Don't Have an Account?
+                </Link>
             </form>
             
             {message && (

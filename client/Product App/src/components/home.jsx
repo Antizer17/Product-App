@@ -38,22 +38,7 @@ function Homepage(){
         const data = res.json()
         setRefresh((refresh)=>refresh + 1)
     }
-    const handleUpdate = async (id, name, price, image)=>{
-        console.log(id)
-        const newName = prompt("Enter new name",name)
-        const newPrice = prompt("Enter new price",price)
-        const newImage = prompt("Enter new image URL",image)    
-    
-        const res =await fetch(`http://localhost:5000/api/products/${id}`,{
-            method:'PUT',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({name:`${newName}`, price:`${newPrice}`, image:`${newImage}`})
-        })
-        const data = await res.json()
-        setRefresh((refresh)=>refresh + 1)
-    }
+ 
     useEffect(()=>{
         const fetchAllPosts= async ()=>{
             try{
@@ -105,13 +90,14 @@ function Homepage(){
                             <button onClick={() => handleSave(obj._id)} style={{ color:'whitesmoke',width:'60px' ,padding:'0.5rem', borderRadius:'10px'}} id="save" className="editButton">Save</button>
                             <button onClick={() => setEditingId(null)} style={{ color:'whitesmoke', width:'60px', padding:'0.5rem', borderRadius:'10px'}} id="cancel" className="editButton">Cancel</button>
                         </div>
-                    ) : (<div  style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-                        <h3 style={{color:"black"}}> {obj.name}</h3>
-                        <h3 id="price"> {obj.price}$</h3>
-                        <hr/>
-
-                        <br/>
+                    ) : (<div  style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', padding:'1rem'}} className="product-card">
                         <img src={obj.image} />
+                        <section style={{display:'flex',flexDirection:'column', justifyContent:'center', height:'100px', rowGap:'1rem'}}>
+                            <h3 style={{color:"black",fontSize:'0.875rem'}}> {obj.name}</h3>
+                            <h3 id="price" style={{fontSize:'1.25rem'}}> {obj.price}$</h3>
+
+                        </section>
+                        
                         <button onClick={()=>handleDelete(obj._id)}  id="delete">Delete</button>
                         <button onClick={()=>handleEdit(obj)}  id="update">Update</button>
                     </div>)}
